@@ -123,7 +123,12 @@
 (defn handler [request]
   (if-not (is-visa-direct-submission request)
     {:status 404 :body "not found"}
-    (fund-gift)))
+    
+    {:status 200
+     :headers {"Access-Control-Allow-Origin" "*"}
+     :body (json/generate-string (fund-gift))}))
+    
+    
 
 
 
